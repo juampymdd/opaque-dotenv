@@ -2,21 +2,19 @@ import MarkdownEditor from "../components/MarkdownEditor";
 
 export default function Home() {
   return (
-    <main style={{ padding: 24 }}>
-      <h1 className="text-4xl">Opaque Dotenv</h1>
-      <p>
-        Esta aplicación utiliza variables de entorno opacas para gestionar la
-        configuración.
-      </p>
-      <p>
-        Las variables de entorno opacas son una forma segura de manejar
-        información sensible, como claves API y credenciales, sin exponerlas en
-        el código fuente.
-      </p>
+    <div>
+      <section className="bg-white/5 dark:bg-black/5 rounded-lg p-6">
+        <h1 className="text-4xl font-bold">Opaque Dotenv</h1>
+        <p className="mt-3 text-gray-600 dark:text-gray-300">
+          Pega tus archivos .env o escribe Markdown. La previsualización ocultará
+          los valores sensibles mostrando su Base64 y tendrás soporte para drag &
+          drop y copiado rápido.
+        </p>
+      </section>
 
-      <section style={{ marginTop: 24 }}>
+      <section className="mt-6 bg-white/3 dark:bg-black/3 rounded-lg p-4 shadow-sm">
         <MarkdownEditor />
       </section>
-    </main>
+    </div>
   );
 }

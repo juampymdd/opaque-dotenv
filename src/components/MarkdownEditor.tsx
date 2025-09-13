@@ -212,8 +212,8 @@ export default function MarkdownEditor() {
   };
 
   return (
-    <div className="editor-grid container">
-      <div className="editor-pane">
+    <div className="grid gap-6 md:grid-cols-2">
+      <div className="flex flex-col">
         <label style={{ display: "block", marginBottom: 8, fontWeight: 600 }}>
           Pega tus envs aqui
         </label>
@@ -238,7 +238,7 @@ export default function MarkdownEditor() {
         </div>
       </div>
 
-      <div className="preview-pane">
+  <div className="flex flex-col">
         <div
           style={{
             display: "flex",

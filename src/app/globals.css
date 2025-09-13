@@ -1,87 +1,17 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Prevent layout overflow and ensure components fit viewport */
+/* Minimal global styles — Tailwind handles layout and visual styles. */
 * { box-sizing: border-box; }
 html, body, #__next { width: 100%; max-width: 100%; overflow-x: hidden; }
 
-
-/* Tailwind utilities are used for editor + preview styling; custom token colors removed. */
-
-/* CodeMirror tweaks: minimal layout; theme controls colors */
+/* Keep a few small tweaks for CodeMirror so the editor fills its container. */
 .cm-editor { height: 100%; }
-.cm-scroller {
-  overflow: auto;
-  max-height: 100%;
-}
-.cm-gutters {
-  background: transparent;
-  color: rgba(255,255,255,0.35);
-  border-right: 1px solid rgba(255,255,255,0.04);
-}
-.cm-cursor { border-left: 1px solid rgba(0,0,0,0.6); }
-.cm-activeLine { background: rgba(0,0,0,0.03); }
-
-/* CodeMirror token spacing */
+.cm-scroller { overflow: auto; max-height: 100%; }
 .cm-line { line-height: 1.6; }
-
-/* make the editor pane a fixed viewport area so the internal scroller works */
 .editor-pane .cm-editor { height: 60vh; }
+.preview-content { max-width: 100%; height: 60vh; overflow: auto; border-radius: 0.5rem; }
 
-/* minimal CM layout rules; theme provides colors */
-.cm-gutters { color: rgba(255,255,255,0.35) !important; }
-
-/* Editor responsive grid */
-.editor-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: start;
-  width: 100%;
-  margin: 0 auto;
-}
-.editor-pane, .preview-pane {
-  min-width: 0; /* allow children to shrink */
-}
-.preview-content {
-  max-width: 100%;
-  height: 60vh;
-  overflow: auto;
-  border: 1px solid #e5e7eb;
-  padding: 12px;
-  border-radius: 6px;
-  background: var(--background);
-}
-
+/* Responsive fallback (Tailwind classes should cover most cases) */
 @media (max-width: 900px) {
-  .editor-grid {
-    grid-template-columns: 1fr;
-  }
-  .preview-content {
-    height: 50vh;
-  }
+  .preview-content { height: 50vh; }
 }
