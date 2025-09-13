@@ -63,8 +63,8 @@ function renderMarkdown(md: string) {
   };
 
   for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    let line = raw;
+  const raw = lines[i];
+  const line = raw;
 
     if (/^```/.test(line)) {
       if (!inCodeBlock) {
