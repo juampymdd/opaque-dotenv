@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { markdown } from "@codemirror/lang-markdown";
 import { oneDark } from "@codemirror/theme-one-dark";
-// removed custom highlight imports to use built-in theme/basic setup
 
 function escapeHtml(str: string) {
   return str
@@ -63,8 +62,8 @@ function renderMarkdown(md: string) {
   };
 
   for (let i = 0; i < lines.length; i++) {
-  const raw = lines[i];
-  const line = raw;
+    const raw = lines[i];
+    const line = raw;
 
     if (/^```/.test(line)) {
       if (!inCodeBlock) {
@@ -214,23 +213,18 @@ export default function MarkdownEditor() {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div className="flex flex-col">
-        <label style={{ display: "block", marginBottom: 8, fontWeight: 600 }}>
-          Pega tus envs aqui
-        </label>
+        <label className="block mb-2 font-semibold">Pega tus envs aqui</label>
         <div
           onDrop={onDrop}
           onDragOver={(e) => e.preventDefault()}
-          style={{
-            border: "1px solid #e5e7eb",
-            borderRadius: 6,
-            overflow: "hidden",
-            height: "60vh",
-          }}
+          className="border border-gray-200 rounded overflow-hidden h-[60vh]"
         >
-          <div style={{ flex: 1, minHeight: 0 }}>
+          <div className="flex-1 min-h-0 h-full">
             <CodeMirror
               value={value}
               basicSetup={true}
+              height="100%"
+              className="h-full"
               extensions={[markdown(), oneDark]}
               onChange={(v: string | undefined) => setValue(v ?? "")}
             />
@@ -238,35 +232,23 @@ export default function MarkdownEditor() {
         </div>
       </div>
 
-  <div className="flex flex-col">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 8,
-          }}
-        >
-          <label style={{ display: "block", fontWeight: 600 }}>
-            Previsualización
-          </label>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+  <div className="flex flex-col h-[60vh]">
+        <div className="flex items-center justify-between mb-2">
+          <label className="block font-semibold">Previsualización</label>
+          <div className="flex items-center gap-2">
             <button
               onClick={handleCopy}
               className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 text-sm"
             >
               Copiar
             </button>
-            {copied && (
-              <span style={{ color: "green", fontSize: 13 }}>Copiado!</span>
-            )}
+            {copied && <span className="text-green-500 text-sm">Copiado!</span>}
           </div>
         </div>
 
-        <div
-          className="preview-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className="prose max-w-none dark:prose-invert overflow-auto flex-1 min-h-0"> 
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+        </div>
       </div>
     </div>
   );

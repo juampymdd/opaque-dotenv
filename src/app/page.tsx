@@ -3,12 +3,11 @@ import MarkdownEditor from "../components/MarkdownEditor";
 export default function Home() {
   return (
     <div>
-      <section className="bg-white/5 dark:bg-black/5 rounded-lg p-6">
+      <section className="backdrop-blur-lg bg-white/20 dark:bg-black/5 rounded-lg p-6">
         <h1 className="text-4xl font-bold">Opaque Dotenv</h1>
         <p className="mt-3 text-gray-600 dark:text-gray-300">
-          Pega tus archivos .env o escribe Markdown. La previsualización ocultará
-          los valores sensibles mostrando su Base64 y tendrás soporte para drag &
-          drop y copiado rápido.
+          Pega tus archivos .env y conviertelos en secrets para utilizar en tu secret.yaml y
+          disfruta de un drop y copiado rápido.
         </p>
       </section>
 
