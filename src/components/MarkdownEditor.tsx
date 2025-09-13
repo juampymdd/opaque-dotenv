@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { markdown } from "@codemirror/lang-markdown";
 import { oneDark } from "@codemirror/theme-one-dark";
+import { Copy, Clipboard } from "lucide-react";
 
 function escapeHtml(str: string) {
   return str
@@ -153,6 +154,7 @@ function renderMarkdown(md: string) {
 export default function MarkdownEditor() {
   const [value, setValue] = useState("");
   const [copied, setCopied] = useState(false);
+  const [pasted, setPasted] = useState(false);
 
   // use built-in theme/basicSetup for syntax highlighting
 
@@ -213,7 +215,33 @@ export default function MarkdownEditor() {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div className="flex flex-col">
-        <label className="block mb-2 font-semibold">Pega tus envs aqui</label>
+        <div className="flex items-center justify-between mb-2">
+          <label className="block font-semibold">Pega tus envs aqui</label>
+          <div className="flex items-center gap-2">
+           
+            <button
+              onClick={async () => {
+                try {
+                  const text = await navigator.clipboard.readText();
+                  if (text) {
+                    setValue(text);
+                    setPasted(true);
+                    setTimeout(() => setPasted(false), 1400);
+                  }
+                } catch (e) {
+                  console.error("paste failed", e);
+                }
+              }}
+              className="flex items-center gap-2 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 text-sm"
+            >
+              <Clipboard className="w-4 h-4" />
+              Pegar
+            </button>
+            {pasted && <span className="text-green-500 text-sm">Pegado!</span>}
+        
+          </div>
+        </div>
+
         <div
           onDrop={onDrop}
           onDragOver={(e) => e.preventDefault()}
@@ -238,10 +266,13 @@ export default function MarkdownEditor() {
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopy}
-              className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 text-sm"
+                className="flex items-center gap-2 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 text-sm"
             >
+              <Copy className="w-4 h-4" />
               Copiar
             </button>
+           
+            
             {copied && <span className="text-green-500 text-sm">Copiado!</span>}
           </div>
         </div>

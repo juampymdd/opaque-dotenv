@@ -3,7 +3,7 @@ import MarkdownEditor from "../components/MarkdownEditor";
 export default function Home() {
   return (
     <div>
-      <section className="backdrop-blur-lg bg-white/20 dark:bg-black/5 rounded-lg p-6">
+      <section className="backdrop-blur-lg bg-black/20 dark:bg-black/20 rounded-lg p-6">
         <h1 className="text-4xl font-bold">Opaque Dotenv</h1>
         <p className="mt-3 text-gray-600 dark:text-gray-300">
           Pega tus archivos .env y conviertelos en secrets para utilizar en tu secret.yaml y

@@ -78,11 +78,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-white via-gray-50 to-white text-gray-900 dark:bg-gradient-to-b dark:from-black/80 dark:via-slate-900 dark:to-black dark:text-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} h-screen antialiased bg-gradient-to-b from-white via-gray-50 to-white text-gray-900 dark:bg-gradient-to-b dark:from-black/80 dark:via-slate-900 dark:to-black dark:text-gray-100`}
       >
         <Header />
 
-        <main className="max-w-5xl mx-auto px-4 py-6">{children}</main>
+        <main className="max-w-7xl mx-auto px-4 py-6">{children}</main>
       </body>
     </html>
   );
